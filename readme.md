@@ -15,4 +15,5 @@
 - `vagrant up` - install and start the vagrant box
 - `vagrant halt` - stop/shutdown the vagrant box
 - `vagrant destroy` - to delete the vagrant box
+- reboot the machine after changes in Vagrantfile - `vagrant reload`
 - get status of all VM on system - `vagrant global-status`
