@@ -17,3 +17,6 @@
 - `vagrant destroy` - to delete the vagrant box
 - reboot the machine after changes in Vagrantfile - `vagrant reload`
 - get status of all VM on system - `vagrant global-status`
+
+## ./scriptbox
+- to start only one machine - run `vagrant up ${machine_name}`
