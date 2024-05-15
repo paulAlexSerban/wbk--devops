@@ -1,0 +1,11 @@
+services:
+  frontend:
+    image: paulserbandev/starter-local-to-ecs-front
+    build: frontend
+    ports:
+      - 80:80
+    depends_on:
+      - backend
+  backend:
+    image: paulserbandev/starter-local-to-ecs-back
+    build: backend

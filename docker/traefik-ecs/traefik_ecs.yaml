@@ -1,0 +1,56 @@
+## Static configuration
+entryPoints:
+  web:
+    address: ":80"
+    http:
+      redirections:
+        entryPoint:
+          to: websecure
+          scheme: https
+ 
+  websecure:
+    address: ":443"
+    http:
+      tls:
+        certResolver: myresolver
+ 
+api:
+  dashboard: true
+ 
+providers:
+  ecs:
+    exposedByDefault: true
+    autoDiscoverClusters: false
+    clusters:
+    - test-traefik-cluster
+    region: your-region
+    accessKeyID: "your access key id"
+    secretAccessKey: "your secret access key"
+ 
+certificatesResolvers:
+  myresolver:
+    # Enable ACME (Let's Encrypt): automatic SSL.
+    acme:
+      email: "paul.alex.serban.aws@gmail.com"
+      storage: "acme.json"
+ 
+      # CA server to use.
+      # Uncomment the line to use Let's Encrypt's staging server,
+      # leave commented to go to prod.
+      #
+      # Optional
+      # Default: "https://acme-v02.api.letsencrypt.org/directory"
+      #
+      # caServer: "https://acme-staging-v02.api.letsencrypt.org/directory"
+      # Use a TLS-ALPN-01 ACME challenge.
+      #
+      # Optional (but recommended)
+      #
+      # tlsChallenge:
+      httpChallenge:
+ 
+        # EntryPoint to use for the HTTP-01 challenges.
+        #
+        # Required
+        #
+        entryPoint: web

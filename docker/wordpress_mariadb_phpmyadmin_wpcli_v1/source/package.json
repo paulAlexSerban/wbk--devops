@@ -1,0 +1,20 @@
+{
+  "name": "wordpress_mariadb_phpmyadmin_wpcli_v1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --config ./webpack/webpack.config.js && tree ./wordpress/themes/test-*"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "clean-webpack-plugin": "^4.0.0",
+    "fs-extra": "^10.0.0",
+    "mini-css-extract-plugin": "^2.2.2",
+    "webpack": "^5.51.2",
+    "webpack-cli": "^4.8.0",
+    "webpack-dev-server": "^4.1.0",
+    "webpack-manifest-plugin": "^4.0.2"
+  }
+}

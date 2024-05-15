@@ -1,0 +1,43 @@
+version: '2'
+
+# Note: use the database service name `db` in the Host IP Address field ...
+# Or, `docker container inspect {postgrescontainerid}` to obtain the IP Address needed for completing the Drupal setup screen.
+
+services:
+  # database
+  postgres_db:
+    image: postgres:latest
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: user # The PostgreSQL user (useful to connect to the database)
+      POSTGRES_PASSWORD: pass # The PostgreSQL password (useful to connect to the database)
+      POSTGRES_DB: db # The PostgreSQL default database (automatically created at first launch)
+    volumes:
+      - drupal-data:/var/lib/postgresql/data
+
+  # drupal instance
+  drupal:
+    image: drupal-custom
+    restart: always
+    build: 
+      context: .
+      dockerfile: drupal.Dockerfile
+    ports:
+      - 8080:80
+    volumes:
+      - drupal-modules:/var/www/html/modules
+      - drupal-profiles:/var/www/html/profiles       
+      - drupal-sites:/var/www/html/sites      
+      - drupal-themes:/var/www/html/themes
+    depends_on: 
+      - postgres
+      
+# volumes
+volumes:
+  drupal-data:
+  drupal-modules:
+  drupal-profiles:
+  drupal-sites:
+  drupal-themes:

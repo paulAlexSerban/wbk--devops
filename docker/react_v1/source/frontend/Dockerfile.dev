@@ -1,0 +1,12 @@
+FROM node:latest
+
+WORKDIR '/app'
+COPY package.json ./
+
+RUN npm i
+# next two line are needed t get ownership of the node_modules
+RUN chown node:node /app/node_modules
+USER node
+
+
+CMD ["npm", "run", "start"]
