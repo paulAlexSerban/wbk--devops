@@ -9,6 +9,12 @@ COPY package*.json .
 # install some dependencies
 RUN npm install
 
+ARG DEFAULT_PORT=8080
+
+ENV PORT=${DEFAULT_PORT}
+
+EXPOSE ${PORT}
+
 
 # copy everything from the curent working directory
 COPY ./ ./
