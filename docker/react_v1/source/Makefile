@@ -1,7 +1,7 @@
 start:
 	docker build -f frontend/Dockerfile.dev ./frontend
 
-start:
+start-compose:
 	docker-compose -f frontend/docker-compose.yml down && docker-compose -f frontend/docker-compose.yml up --build
 
 build: 
