@@ -1,0 +1,36 @@
+version: "3.7"
+
+networks:
+    vite-project:
+        driver: bridge
+
+services:
+  # ---------------------------------------------------------------------
+  # | UI Service                                                        |
+  # ---------------------------------------------------------------------
+  ui:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - 8080:5173
+    volumes:
+      - /app/node_modules
+      - .:/app
+    stdin_open: true
+    networks:
+      - vite-project
+
+  # ---------------------------------------------------------------------
+  # | UI Unit-Test Service                                               |
+  # ---------------------------------------------------------------------
+  ui-unint-test:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /app/node_modules
+      - .:/app
+    command: ["yarn", "run", "test"]
+    networks:
+      - vite-project

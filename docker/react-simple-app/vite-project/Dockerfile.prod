@@ -1,0 +1,19 @@
+# multi step build
+# first step of the build
+FROM node:18 as builder
+
+RUN apt-get update && apt-get install -y \
+    yarn
+
+WORKDIR '/app'
+COPY package.json ./
+COPY . .
+RUN yarn
+
+
+
+RUN yarn build
+
+# second step of the build
+FROM nginx:latest
+COPY --from=builder /app/dist /usr/share/nginx/html
