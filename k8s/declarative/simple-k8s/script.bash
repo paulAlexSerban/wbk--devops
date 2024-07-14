@@ -10,10 +10,6 @@ function apply() {
     kubectl apply -f .
 }
 
-function diff() {
-    kubectl diff -f .
-}
-
 function delete() {
     kubectl delete -f .
 }
