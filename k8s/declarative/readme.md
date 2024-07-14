@@ -9,3 +9,26 @@
 - more work than `kubectl run` for just a starting pod
 - the easiest way to automate Kubernetes
 - this is the eventual path to GitOps happiness
+
+## Using `kubectl apply`
+- create/update resources from a file
+  - `kubectl apply -f file.yaml`
+- create/update resources from a directory
+  - `kubectl apply -f dir/`
+- create/update resources from a URL
+  - `kubectl apply -f https://example.com/file.yaml`
+
+
+## Kubernetes Configuration Files YAML
+- YAML is a human readable data serialization format
+- each file contains one or more manifests
+- each manifest describes an API object (deployment, service, job, secret, etc)
+- each manifest needs four parts (root key:value in the file):
+  - `apiVersion: v1` or `apps/v1`
+  - `kind: Deployment` or `Service`
+  - `metadata:`
+    - `name: my-deployment` or `my-service`
+  - `spec:`
+
+## Dry Run
+- option that allows you what you are going to change before you change it
