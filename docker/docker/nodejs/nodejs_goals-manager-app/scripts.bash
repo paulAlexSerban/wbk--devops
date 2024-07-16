@@ -57,7 +57,7 @@ function run() {
     stop
     remove
     docker run --detach --name ${CONTAINER_NAME} \
-        --port ${HOST_PORT}:${CONTAINER_PORT} ${IMAGE_REGISTRY_NAMESPACE}/${IMAGE_NAME}:latest
+        -p ${HOST_PORT}:${CONTAINER_PORT} ${IMAGE_REGISTRY_NAMESPACE}/${IMAGE_NAME}:latest
     list_containers
     echo "Server listening to http://localhost:${HOST_PORT}" # Fixed message to use HOST_PORT
 }
