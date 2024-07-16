@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   mongodb:
     image: mongo
@@ -11,6 +9,12 @@ services:
     env_file:
       - ./env/mongodb.env
 
+  backend:
+
 networks:
   mongodb:
     driver: bridge
+
+volumes:
+  data:
+    driver: local
