@@ -1,27 +1,30 @@
-# start and run docker container with centos image
-# rub it detached and keep it running
+#!/bin/bash
+# makes sure the folder containing the script will be the root folder
+cd "$(dirname "$0")" || exit
+
+IMAGE_NAME="centos"
+CONTAINR_NAME="centos"
+VERSION=latest
 
 function run() {
     # start docker container
-    docker run -d -it --name centos centos
+    docker run -d -it --name ${CONTAINR_NAME} ${IMAGE_NAME}:${VERSION}
 
     # get the os version
-    docker exec -it centos cat /etc/os-release
+    docker exec -it ${CONTAINR_NAME} cat /etc/os-release
 
     # run bash in the container
-    docker exec -it centos bash
+    docker exec -it ${CONTAINR_NAME} bash
 }
 
 function stop() {
     # stop the container
-    docker stop centos
+    docker stop ${CONTAINR_NAME}
 }
 
 function remove() {
     # remove the container
-    docker rm centos
+    docker rm ${CONTAINR_NAME}
 }
-
-
 
 $1
