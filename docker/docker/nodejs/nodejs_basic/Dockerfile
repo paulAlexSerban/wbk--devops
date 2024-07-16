@@ -4,7 +4,6 @@ FROM node:18
 WORKDIR /usr/src/app
 
 COPY package.json ./
-COPY yarn.lock ./
 
 RUN yarn && yarn cache clean --force
 # if you build you code for production
