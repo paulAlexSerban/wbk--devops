@@ -29,7 +29,9 @@ function list_containers() {
 }
 
 function build() {
-    docker image build -t ${IMAGE_NAME}:${PACKAGE_VERSION} -t ${IMAGE_NAME}:latest . --build-arg CONTAINER_PORT=${CONTAINER_PORT}
+    docker image build --tag ${IMAGE_NAME}:${PACKAGE_VERSION} \
+                       --tag ${IMAGE_NAME}:latest . \
+                       --build-arg CONTAINER_PORT=${CONTAINER_PORT}
     list_images
 }
 
@@ -47,7 +49,8 @@ function remove() {
 function run() {
     stop
     remove
-    docker run --name ${CONTAINER_NAME} -d -p ${HOST_PORT}:${CONTAINER_PORT} ${IMAGE_NAME}:latest
+    docker run --detach --name ${CONTAINER_NAME} \
+               --port ${HOST_PORT}:${CONTAINER_PORT} ${IMAGE_NAME}:latest
     list_containers
     echo "Server listening to http://localhost:${HOST_PORT}" # Fixed message to use HOST_PORT
 }

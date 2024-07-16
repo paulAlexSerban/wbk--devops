@@ -8,7 +8,8 @@ PACKAGE_VERSION=latest
 
 function run() {
     # start docker container
-    docker run -d -it --name ${CONTAINR_NAME} ${IMAGE_NAME}:${PACKAGE_VERSION}
+    docker run --detach -it \
+               --name ${CONTAINR_NAME} ${IMAGE_NAME}:${PACKAGE_VERSION}
 
     # get the os version
     docker exec -it ${CONTAINR_NAME} cat /etc/os-release
