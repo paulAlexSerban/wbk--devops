@@ -67,4 +67,9 @@ function push() {
     docker push ${IMAGE_REGISTRY_NAMESPACE}/${IMAGE_NAME}:latest
 }
 
+function logs() {
+    docker logs ${CONTAINER_NAME}
+}
+
+
 $1 && echo "Done" || echo "Failed"
