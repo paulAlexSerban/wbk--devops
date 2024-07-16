@@ -1,13 +1,21 @@
-FROM node:12
+FROM node:18
 
-WORKDIR /app
+# Create app directory
+WORKDIR /usr/src/app
 
-COPY package.json /app
+COPY package.json ./
 
-RUN npm install
+RUN yarn && yarn cache clean --force
+# if you build you code for production
+# RUN yarn install --production
 
-COPY . /app
+# Bundle app source
+COPY . .
 
-EXPOSE 80
+ARG CONTAINER_PORT
+ENV CONTAINER_PORT=$CONTAINER_PORT
 
-CMD ["node", "server.js"]
+EXPOSE $CONTAINER_PORT
+
+# define the command to run your app usng CMD
+CMD ["node", "src/server.js"]
