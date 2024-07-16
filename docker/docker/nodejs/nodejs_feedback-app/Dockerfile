@@ -15,10 +15,10 @@ COPY . .
 ARG CONTAINER_PORT
 ENV CONTAINER_PORT=$CONTAINER_PORT
 
-# # anonymous volume used to store temporary files
-# # useful for improving performance
-# VOLUME ["/src/temp"]
+# anonymous volume used to store temporary files
+# useful for improving performance
+VOLUME ["/src/temp"]
 
 EXPOSE $CONTAINER_PORT
 
-CMD [ "npm", "start" ]
+CMD [ "yarn", "start" ]
