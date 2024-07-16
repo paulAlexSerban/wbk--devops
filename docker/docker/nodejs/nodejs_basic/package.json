@@ -1,5 +1,6 @@
 {
   "name": "nodejs_basic",
+  "imageRegistryNamespace": "paulserbandev",
   "version": "0.1.0",
   "description": "Node.js on Docker",
   "main": "src/server.js",
