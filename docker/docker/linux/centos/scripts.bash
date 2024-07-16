@@ -4,11 +4,11 @@ cd "$(dirname "$0")" || exit
 
 IMAGE_NAME="centos"
 CONTAINR_NAME="centos"
-VERSION=latest
+PACKAGE_VERSION=latest
 
 function run() {
     # start docker container
-    docker run -d -it --name ${CONTAINR_NAME} ${IMAGE_NAME}:${VERSION}
+    docker run -d -it --name ${CONTAINR_NAME} ${IMAGE_NAME}:${PACKAGE_VERSION}
 
     # get the os version
     docker exec -it ${CONTAINR_NAME} cat /etc/os-release

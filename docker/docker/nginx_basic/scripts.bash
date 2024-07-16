@@ -2,10 +2,13 @@
 # makes sure the folder containing the script will be the root folder
 cd "$(dirname "$0")" || exit
 
-IMAGE_NAME="custom-nginx"
-VERSION=latest
-LOCALHOST_PORT=8080
-CONTAINR_NAME="custom-nginx"
+IMAGE_NAME=custom_nginx
+CONTAINER_NAME=custom_nginx
+
+PACKAGE_VERSION="0.0.0"
+
+HOST_PORT=8080
+CONTAINER_PORT=80
 
 function help() {
     echo "Available commands:"
@@ -13,6 +16,8 @@ function help() {
     echo "run - run the Docker container"
     echo "list_images - list all Docker images"
     echo "list_containers - list all Docker containers"
+    echo "stop - stop the Docker container"
+    echo "remove - remove the Docker container"
 }
 
 function list_images() {
@@ -20,29 +25,31 @@ function list_images() {
 }
 
 function list_containers() {
-    docker ps | grep ${CONTAINR_NAME}
+    docker ps | grep ${CONTAINER_NAME}
 }
 
 function build() {
-    docker image build -t ${IMAGE_NAME}:${VERSION} -t ${IMAGE_NAME}:latest . 
+    docker image build -t ${IMAGE_NAME}:${PACKAGE_VERSION} -t ${IMAGE_NAME}:latest . --build-arg CONTAINER_PORT=${CONTAINER_PORT}
     list_images
-}
-
-function run() {
-    docker run --name ${CONTAINR_NAME} -d -p ${LOCALHOST_PORT}:80 ${IMAGE_NAME}:latest --name ${CONTAINR_NAME}
-    list_containers
-    echo "Server listenting to http://localhost:${LOCALHOST_PORT}"
 }
 
 function stop() {
     # stop the container
-    docker stop ${CONTAINR_NAME}
+    docker stop ${CONTAINER_NAME}
 }
 
 function remove() {
     # remove the container
-    docker rm ${CONTAINR_NAME}
+    docker rm ${CONTAINER_NAME}
     list_containers
 }
 
-$1
+function run() {
+    stop
+    remove
+    docker run --name ${CONTAINER_NAME} -d -p ${HOST_PORT}:${CONTAINER_PORT} ${IMAGE_NAME}:latest
+    list_containers
+    echo "Server listening to http://localhost:${HOST_PORT}" # Fixed message to use HOST_PORT
+}
+
+$1 && echo "Done" || echo "Failed"
