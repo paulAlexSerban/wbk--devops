@@ -12,6 +12,11 @@ CONTAINER_PORT=80
 
 IMAGE_REGISTRY_NAMESPACE=paulserbandev
 
+if [ -z "$1" ]; then
+    help
+    exit 1
+fi
+
 function help() {
     echo "Available commands:"
     echo "build - build the Docker image"
@@ -32,8 +37,8 @@ function list_containers() {
 
 function build() {
     docker image build --tag ${IMAGE_REGISTRY_NAMESPACE}/${IMAGE_NAME}:${PACKAGE_VERSION} \
-                       --tag ${IMAGE_REGISTRY_NAMESPACE}/${IMAGE_NAME}:latest . \
-                       --build-arg CONTAINER_PORT=${CONTAINER_PORT}
+        --tag ${IMAGE_REGISTRY_NAMESPACE}/${IMAGE_NAME}:latest . \
+        --build-arg CONTAINER_PORT=${CONTAINER_PORT}
     list_images
 }
 
@@ -52,9 +57,9 @@ function run() {
     stop
     remove
     docker run --detach --name ${CONTAINER_NAME} \
-               --port ${HOST_PORT}:${CONTAINER_PORT} ${IMAGE_REGISTRY_NAMESPACE}/${IMAGE_NAME}:latest
+        --port ${HOST_PORT}:${CONTAINER_PORT} ${IMAGE_REGISTRY_NAMESPACE}/${IMAGE_NAME}:latest
     list_containers
-    echo "Server listening to http://localhost:${HOST_PORT}"  # Fixed message to use HOST_PORT
+    echo "Server listening to http://localhost:${HOST_PORT}" # Fixed message to use HOST_PORT
 }
 
 function push() {
