@@ -12,4 +12,16 @@ function run() {
     docker exec -it centos bash
 }
 
+function stop() {
+    # stop the container
+    docker stop centos
+}
+
+function remove() {
+    # remove the container
+    docker rm centos
+}
+
+
+
 $1
