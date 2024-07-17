@@ -71,5 +71,24 @@ function logs() {
     docker logs ${CONTAINER_NAME}
 }
 
+function clean_system() {
+    echo "Disk usage before cleanup:"
+    docker system df
+    
+    echo "Pruning all unused images..."
+    docker image prune -a -f
+    
+    echo "Pruning all stopped containers..."
+    docker container prune -f
+    
+    echo "Pruning all unused volumes..."
+    docker volume prune -f
+    
+    echo "Pruning all unused networks..."
+    docker network prune -f
+    
+    echo "Disk usage after cleanup:"
+    docker system df
+}
 
 $1 && echo "Done" || echo "Failed"
