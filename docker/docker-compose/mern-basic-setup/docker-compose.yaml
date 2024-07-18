@@ -1,0 +1,70 @@
+---
+services:
+  # ---------------------------------------------------------------------
+  # | MongoDB - Database                                                |
+  # ---------------------------------------------------------------------
+  mongodb:
+    image: "mongo"
+    container_name: "mongodb"
+    volumes:
+      - data:/data/db
+    env_file:
+      - ./env/mongo.env
+    networks:
+      - mern-network
+
+  # ---------------------------------------------------------------------
+  # | Backend - Node.js Server                                          |
+  # ---------------------------------------------------------------------
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: "backend"
+    ports:
+      - "80:80"
+    volumes:
+      - logs:/app/logs
+      - ./backend:/app
+      - /app/node_modules
+    env_file:
+      - ./env/backend.env
+    depends_on:
+      - mongodb
+    networks:
+      - mern-network
+
+  # ---------------------------------------------------------------------
+  # | Frontend - React App                                              |
+  # ---------------------------------------------------------------------
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: "frontend"
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend/src:/app/src
+    stdin_open: true
+    tty: true
+    depends_on:
+      - backend
+    networks:
+      - mern-network
+
+# ---------------------------------------------------------------------
+# | Volumes                                                           |
+# | Anonymous volumes are used here to persist data.                  |
+# ---------------------------------------------------------------------
+volumes:
+  data:
+  logs:
+
+# ---------------------------------------------------------------------
+# | Networks                                                          |
+# | The network is created here to allow the services to communicate. |
+# ---------------------------------------------------------------------
+networks:
+  mern-network:
+    driver: bridge

@@ -14,34 +14,50 @@ if [ -z "$1" ]; then
     exit 1
 fi
 
+ENV_FILE="./env/.env"
+COMPOSE_FILE="./docker-compose.yaml"
+
 function up() {
-    docker-compose up -d
+    echo "[ 🟢 🐳 compose up ]"
+    docker compose \
+        --env-file ${ENV_FILE} \
+        --file ${COMPOSE_FILE} up \
+        --detach --build
 }
 
 function up-new() {
-    docker-compose up -d --force-recreate
+    echo "[ 🟢 🐳 compose up new ]"
+    docker-compose up \
+        --env-file ${ENV_FILE} \
+        --file ${COMPOSE_FILE} up \
+        --detach --build \
+        --force-recreate
 }
 
 function down() {
-    docker-compose down -v
+    echo "[ 🛑 🐳 compose down ]"
+    docker compose \
+        --env-file ${ENV_FILE} \
+        --file ${COMPOSE_FILE} down \
+        --volumes --rmi all
 }
 
 function clean_system() {
     echo "Disk usage before cleanup:"
     docker system df
-    
+
     echo "Pruning all unused images..."
     docker image prune -a -f
-    
+
     echo "Pruning all stopped containers..."
     docker container prune -f
-    
+
     echo "Pruning all unused volumes..."
     docker volume prune -f
-    
+
     echo "Pruning all unused networks..."
     docker network prune -f
-    
+
     echo "Disk usage after cleanup:"
     docker system df
 }
