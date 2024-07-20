@@ -18,8 +18,13 @@ services:
     volumes:
       # :ro - read only | :rw - read write
       - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./src:/var/www/html:delegated
     networks:
       - default
+    depends_on:
+      - php-web-service
+      - mysql-database
+
   # ---------------------------------------------------------------------
   # | PHP - Web Service                                                 |
   # ---------------------------------------------------------------------
@@ -32,11 +37,15 @@ services:
       - ./src:/var/www/html:delegated
     networks:
       - default
+    depends_on:
+      - mysql-database
+
   # ---------------------------------------------------------------------
   # | MySQL - Database                                                  |
   # ---------------------------------------------------------------------
   mysql-database:
-    image: mysql:5.7
+    platform: linux/amd64
+    image: mysql:latest
     container_name: mysql-database
     volumes:
       - mysql-data:/var/lib/mysql
@@ -44,6 +53,7 @@ services:
       - ./env/mysql.env
     networks:
       - default
+
   # ---------------------------------------------------------------------
   # | Composer - Utility Container                                      |
   # ---------------------------------------------------------------------
@@ -56,5 +66,27 @@ services:
       - ./src:/var/www/html:delegated
     networks:
       - default
-  # npm-utility:
-  # artisan-utility:
+
+  # ---------------------------------------------------------------------
+  # | Artisan - Utility Container                                       |
+  # ---------------------------------------------------------------------
+  artisan-utility-container:
+    build:
+      context: ./dockerfiles
+      dockerfile: php.Dockerfile
+    volumes:
+      # :delegated - sync files between host and container
+      - ./src:/var/www/html:delegated
+    networks:
+      - default
+    entrypoint: ["php", "/var/www/html/artisan"]
+
+  # ---------------------------------------------------------------------
+  # | NPM - Utility Container                                           |
+  # ---------------------------------------------------------------------
+  npm-utility-container:
+    image: node:20
+    working_dir: /var/www/html
+    entrypoint: ["npm"]
+    volumes:
+      - ./src:/var/www/html:delegated

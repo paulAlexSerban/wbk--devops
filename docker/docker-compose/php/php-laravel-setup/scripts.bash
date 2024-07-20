@@ -24,25 +24,37 @@ function up() {
     docker compose \
         --env-file ${ENV_FILE} \
         --file ${COMPOSE_FILE} up \
-        --detach --build
+        --detach --build \
+         nginx-web-server
+         # php-web-service mysql-database will be started as docker-compose has depends_on set
 }
 
 function up-new() {
     echo "[ 🟢 🐳 compose up new ]"
-    docker-compose up \
+    docker-compose \
         --env-file ${ENV_FILE} \
         --file ${COMPOSE_FILE} up \
         --detach --build \
-        --force-recreate
+        --force-recreate \
+         nginx-web-server
 }
 
 function create_project() {
     echo "[ 🟢 🐳 compose create project ]"
     docker compose \
         --env-file ${ENV_FILE} \
-        --file ${COMPOSE_FILE} run -rm \
+        --file ${COMPOSE_FILE} run --rm \
         composer-utility-container \
         create-project --prefer-dist laravel/laravel .
+}
+
+function migrate() {
+    echo "[ 🟢 🐳 compose migrate ]"
+    docker compose \
+        --env-file ${ENV_FILE} \
+        --file ${COMPOSE_FILE} run --rm \
+        artisan-utility-container \
+        migrate
 }
 
 function down() {
