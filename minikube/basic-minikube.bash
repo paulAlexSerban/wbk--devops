@@ -3,15 +3,16 @@
 cd "$(dirname "$0")" || exit
 
 function start_k8s() {
-    echo "Starting the Kubernetes cluster"
+    echo "Starting the local Kubernetes minikube cluster"
     minikube start
-    echo "The cluster is started"
+    echo "The minikube cluster is started"
 }
 
 function stop_k8s() {
-    echo "Stopping the Kubernetes cluster"
+    echo "Stopping the Kubernetes minikube cluster"
     minikube stop
     echo "The cluster is stopped - deployed apps were not deleted"
+    echo "To start the cluster again, run 'minikube start' - if you ahve issues, run 'minikube delete' and then 'minikube start'"
 }
 
 function create_service_hello_minikube() {
