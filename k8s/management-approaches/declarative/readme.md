@@ -32,3 +32,16 @@
 
 ## Dry Run
 - option that allows you what you are going to change before you change it
+
+## Some other commands
+`kubectl delete -f infrastructure/k8s/posts.yaml`
+`kubectl apply -f infrastructure/k8s/posts.yaml`
+`kubectl apply -f infrastructure/k8s/posts-depl.yaml`
+`kubectl get pods`
+`kubectl get deployments`
+`kubectl exec -it POD_NAME -- sh`
+`kubectl logs POD_NAME`
+`kubectl delete pod POD_NAME`
+`kubectl describe pod POD_NAME`
+`kubectl describe deployment DEPLOYMENT_NAME`
+`kubectl rollout restart deployment DEPLOYMENT_NAME`
