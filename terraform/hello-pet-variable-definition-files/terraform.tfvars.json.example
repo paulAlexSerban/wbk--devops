@@ -1,0 +1,7 @@
+{
+    "filename": "pet.txt",
+    "content": "Hello, tfvars pet!",
+    "prefix": "Mrs...",
+    "separator": " ",
+    "length": 1
+}
