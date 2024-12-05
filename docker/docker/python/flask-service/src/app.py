@@ -1,4 +1,3 @@
-import os
 from flask import Flask
 app = Flask(__name__)
 
@@ -10,5 +9,9 @@ def main():
 def hello():
     return 'I am good, how about you?'
 
+@app.route('/html')
+def hello_geek():
+    return '<h1>Hello from Flask & Docker</h2>'
+
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8080)
+    app.run(debug=True)
