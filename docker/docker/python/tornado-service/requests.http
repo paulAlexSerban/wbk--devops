@@ -1,0 +1,7 @@
+@host = http://localhost:5000/json
+
+GET {{host}}
+
+###
+POST {{host}}?name=cat
+Content-Type: application/json

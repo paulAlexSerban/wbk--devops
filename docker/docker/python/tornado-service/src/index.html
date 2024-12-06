@@ -7,12 +7,50 @@
   </head>
   <body>
     <h1>List of animals</h1>
-    <select>
-      <option value="1">Dog</option>
-      <option value="2">Cat</option>
-      <option value="3">Rabbit</option>
-      <option value="4">Hamster</option>
-      <option value="5">Parrot</option>
-    </select>
+    <select></select>
+    <label for=""
+      >Add a new animals
+      <input type="text" id="txtAnimal" />
+      <button id="btnAdd">Add animal</button>
+    </label>
+    <br />
+
+    <form method="post" action="/upload" enctype="multipart/form-data">
+      <input type="file" name="imgFile" id="imgFile" accept=".jpg,.png" />
+      <input type="submit" value="upload" />
+    </form>
+    <script>
+      const path = "/animals";
+      const select = document.querySelector("select");
+      const option = document.createElement("option");
+      const txtAnimal = document.querySelector("#txtAnimal");
+
+      fetch(path).then((response) => {
+        response.json().then((data) => {
+          data.forEach((animal) => {
+            option.value = animal.id;
+            option.textContent = animal.name;
+            select.appendChild(option);
+          });
+        });
+      });
+
+      document.querySelector("#btnAdd").addEventListener("click", () => {
+        fetch(`/${path}?name=${txtAnimal.value}`, {
+          method: "POST",
+        })
+          .then((response) => {
+            response.json().then((data) => {
+              console.log(data);
+              option.value = data[data.length - 1].id;
+              option.textContent = data[data.length - 1].name;
+              select.appendChild(option);
+            });
+          })
+          .then(() => {
+            txtAnimal.value = "";
+          });
+      });
+    </script>
   </body>
 </html>
