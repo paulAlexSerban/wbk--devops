@@ -11,6 +11,8 @@ function run() {
     docker run --detach -it \
                --name ${CONTAINR_NAME} ${IMAGE_NAME}:${PACKAGE_VERSION}
 
+    # docker run --detach -it --name ubuntu ubuntu:latest bash
+
     # get the os version
     docker exec -it ${CONTAINR_NAME} cat /etc/os-release
 

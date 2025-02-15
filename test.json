@@ -1,0 +1,218 @@
+{
+  "id": "Z4j8XhAAACMAOWJx",
+  "uid": "test-release-date2",
+  "url": null,
+  "type": "game",
+  "href": "https://fanduel-casino-dev.cdn.prismic.io/api/v2/documents/search?ref=Z4kUVhAAACMAOYVM&integrationFieldsRef=fanduel-casino-dev%7Ebc7ed763-4f5d-40bb-9cd4-cefe1f889cea&q=%5B%5B%3Ad+%3D+at%28document.id%2C+%22Z4j8XhAAACMAOWJx%22%29+%5D%5D",
+  "tags": [],
+  "first_publication_date": "2025-01-16T12:33:52+0000",
+  "last_publication_date": "2025-01-16T14:14:46+0000",
+  "slugs": ["test-release-date2"],
+  "linked_documents": [],
+  "lang": "fd-mi",
+  "alternate_languages": [],
+  "data": {
+    "name": [
+      {
+        "type": "heading1",
+        "text": "Test Release Date2",
+        "spans": [],
+        "direction": "ltr"
+      }
+    ],
+    "display_name": [
+      {
+        "type": "heading2",
+        "text": "Test Release Date2",
+        "spans": [],
+        "direction": "ltr"
+      }
+    ],
+    "release_date": "2025-01-16",
+    "ganid": 12021991,
+    "internal_code": "Test Release Date2",
+    "preload": false,
+    "rgs_code_desktop": "550293",
+    "rgs_code_mobile": "550293",
+    "feeds_code_desktop": "550293",
+    "feeds_code_mobile": "550293",
+    "provider": {
+      "id": "X84j1RIAACgAtrR-",
+      "type": "provider",
+      "tags": [],
+      "lang": "fd-mi",
+      "slug": "lw",
+      "first_publication_date": "2020-12-07T12:45:12+0000",
+      "last_publication_date": "2024-11-08T13:20:58+0000",
+      "uid": "nyx",
+      "link_type": "Document",
+      "key": "293d808a-c2e0-4cd1-b623-c847561779cd",
+      "isBroken": false
+    },
+    "provider_name": "NYX",
+    "game_studio": {
+      "id": "ZPcC7BEAACIAFum4",
+      "type": "game_studio",
+      "tags": [],
+      "lang": "fd-mi",
+      "slug": "inspired",
+      "first_publication_date": "2023-09-05T10:55:10+0000",
+      "last_publication_date": "2025-01-14T14:18:03+0000",
+      "uid": "inspired",
+      "link_type": "Document",
+      "key": "04786f2a-7faf-4d2c-a414-14e11ef3a1e9",
+      "isBroken": false
+    },
+    "status_overall": "Active",
+    "status_desktop": "Active",
+    "status_mobile": "Active",
+    "status_xsell_ios": "Active",
+    "status_native": "Inactive",
+    "id_native": null,
+    "id_native_xsell": null,
+    "keywords_for_spotlight_search": "Santa Winter Wilds",
+    "game_window_width": null,
+    "game_window_height": null,
+    "native_landscape_only": false,
+    "rgi": "FGP",
+    "fgp_migration_date": null,
+    "feature_keys": [
+      {
+        "feature_key": {
+          "link_type": "Document"
+        }
+      }
+    ],
+    "body": [
+      {
+        "primary": {
+          "gan_id": "12021991",
+          "gan_alternative_id": null,
+          "rgs_code_desktop_test": "550293",
+          "rgs_code_mobile_test": "550293"
+        },
+        "items": [],
+        "id": "gan_parameters$7c2ba304-7d05-4681-a82e-2bf029aa64cf",
+        "slice_type": "gan_parameters",
+        "slice_label": null
+      }
+    ],
+    "superclass": {
+      "link_type": "Document"
+    },
+    "class": {
+      "link_type": "Document"
+    },
+    "volatility": null,
+    "max_exposure": null,
+    "bet_ways": null,
+    "hit_frequency": null,
+    "layout": null,
+    "max_multiplier": null,
+    "genres": [
+      {
+        "genre": {
+          "link_type": "Document"
+        }
+      }
+    ],
+    "themes": [
+      {
+        "theme": {
+          "link_type": "Document"
+        }
+      }
+    ],
+    "features": [
+      {
+        "feature": {
+          "link_type": "Document"
+        }
+      }
+    ],
+    "objects": [
+      {
+        "object": {
+          "link_type": "Document"
+        }
+      }
+    ],
+    "tax_category": "Slot",
+    "available_segment": "All",
+    "has_demo": "No",
+    "logo": [
+      {
+        "image": {
+          "medium": {},
+          "small": {}
+        },
+        "caption": []
+      }
+    ],
+    "background": [
+      {
+        "image": {
+          "medium": {},
+          "small": {}
+        },
+        "caption": []
+      }
+    ],
+    "flattened": [
+      {
+        "image": {
+          "medium": {},
+          "small": {}
+        },
+        "caption": []
+      }
+    ],
+    "common_ui": {
+      "link_type": "Document"
+    },
+    "background_color": null,
+    "custom_background_color": null,
+    "label": null,
+    "copyright_text": null,
+    "video_trailer": {
+      "link_type": "Any"
+    },
+    "game_play_trailer": {
+      "link_type": "Any"
+    },
+    "game_loading_screen": {
+      "link_type": "Document"
+    },
+    "display_slices": [],
+    "native_description": [
+      {
+        "type": "paragraph",
+        "text": "Slots | $0.10 - $150",
+        "spans": [],
+        "direction": "ltr"
+      }
+    ],
+    "rtp_low": 94.5,
+    "rtp_high": 94.5,
+    "related_games": [
+      {
+        "game": {
+          "link_type": "Document"
+        }
+      }
+    ],
+    "screenshots": [
+      {
+        "screenshot": {}
+      }
+    ],
+    "seo_meta_title": null,
+    "seo_meta_description": null,
+    "seo_game_description_headline": null,
+    "seo_game_description": [],
+    "seo_breadcrumb": {
+      "link_type": "Document"
+    },
+    "body1": []
+  }
+}
