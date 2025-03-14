@@ -1,5 +1,5 @@
 resource "local_file" "pet" {
-  filename = var.filename
+  filename = "${path.module}/dist/${var.filename}"
   content  = var.content
 }
 

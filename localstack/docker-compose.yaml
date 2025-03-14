@@ -1,0 +1,18 @@
+services:
+  localstack:
+    image: localstack/localstack:latest
+    container_name: localstack
+    ports:
+      - "4566:4566"  # LocalStack Gateway
+      - "4510-4559:4510-4559"  # Additional service ports
+    environment:
+      - SERVICES=lambda,apigateway,dynamodb,s3
+      - DEBUG=1
+      - DATA_DIR=/var/lib/localstack
+      - LAMBDA_EXECUTOR=docker-reuse
+      - AWS_DEFAULT_REGION=us-east-1
+      - AWS_ACCESS_KEY_ID=localstack
+      - AWS_SECRET_ACCESS_KEY=localstack
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"  # Required for running Lambdas in containers
+      - "./init-aws.sh:/etc/localstack/init/ready.d/init-aws.sh"  # Auto-create resources
